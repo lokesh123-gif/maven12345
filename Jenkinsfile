@@ -1,26 +1,8 @@
-pipeline{
-agent any
-stages{
-stage('Compile Stage'){
-steps{
-  withMaven(maven:'apache-maven-3.6.3'){
-   sh 'mvn clean compile'
-   }
-   }
-   }
-stage('Testing Stage'){
-steps{
-  withMaven(maven:'apache-maven-3.6.3'){
-   sh 'mvn test'
-   }
-   }
-   }
- stage('Deployment Stage'){
-steps{
-  withMaven(maven:'apache-maven-3.6.3'){
-   sh 'Deploy test'
-   }
-   }
-   } 
-   }
-   }
+node{
+  stage('Git checkout'){
+    git credentialsId: 'd680e124-4b39-4c3e-a127-c8f5b17b45ee', url: 'https://github.com/lokesh123-gif/maven12345.git'
+  }
+  stage('Compile-package'){
+    sh 'mvn package'
+  }
+}
