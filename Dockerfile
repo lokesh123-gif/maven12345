@@ -1,3 +1,7 @@
 FROM openjdk:8
 EXPOSE 8080
-ADD target/sample2.war
+RUN yum update
+RUN yum install httpd -y
+CMD echo "hello world"
+ENTRYPOINT echo "hi"
+
